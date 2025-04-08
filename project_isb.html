@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f5f5f5;
+      color: #333;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #2c3e50;
+    }
+    a {
+      color: #0077b5;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .screenshot {
+      margin: 1rem 0;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 0.8rem;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+    }
+    th {
+      background-color: #ecf0f1;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Interactive Stock Dashboard</h1>
+
+  <h2>Description</h2>
+  <p>
+    A web-based dashboard that provides a company overview, historical share price chart with customizable technical indicators, and a machine learning-based prediction of next-day price movement (up/down). Stock data is fetched via AlphaVantage API, while company descriptions are generated using OpenAI's language model. The price prediction is powered by a classic ML model trained on historical data.
+  </p>
+
+  <p>
+    🔗 <strong>Live Demo:</strong> <a href="https://yourusername.github.io/stock-dashboard" target="_blank">https://yourusername.github.io/stock-dashboard</a><br>
+    💻 <strong>GitHub Repo:</strong> <a href="https://github.com/yourusername/stock-dashboard" target="_blank">github.com/yourusername/stock-dashboard</a>
+  </p>
+
+  <h2>Screenshot</h2>
+  <img src="screenshot.png" alt="Project Screenshot" class="screenshot" />
+
+  <h2>Technologies & Libraries Used</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Technology</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Python (scikit-learn)</td>
+        <td>Training the ML model for price prediction</td>
+      </tr>
+      <tr>
+        <td>JavaScript & Chart.js</td>
+        <td>Rendering interactive share price charts</td>
+      </tr>
+      <tr>
+        <td>HTML/CSS</td>
+        <td>Frontend layout and styling</td>
+      </tr>
+      <tr>
+        <td>AlphaVantage API</td>
+        <td>Fetching real-time and historical stock price data</td>
+      </tr>
+      <tr>
+        <td>OpenAI API</td>
+        <td>Generating company summaries</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
