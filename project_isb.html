@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Project Title</title>
+  <title>Interactive Stock Dashboard</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -44,24 +44,168 @@
     th {
       background-color: #ecf0f1;
     }
+    .chart {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      align-items: flex-start;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .row-group {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .row {
+      display: flex;
+      gap: 2rem;
+      position: relative;
+    }
+
+    .box {
+      background: #fff;
+      border: 2px solid #007bff;
+      border-radius: 10px;
+      padding: 1rem 1.5rem;
+      text-align: center;
+      min-width: 180px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .box.storage {
+      border-color: #6c757d;
+      font-size: 0.9rem;
+      background: #f1f1f1;
+      margin-left: 6rem;
+      align-self: flex-start;
+    }
+
+    .arrow-down, .arrow-right {
+      width: 0;
+      height: 0;
+      position: absolute;
+    }
+
+    .arrow-down {
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 20px solid #007bff;
+      margin: 1rem auto;
+    }
+
+    .comment {
+      background: #fff;
+      border: 1px dashed #ccc;
+      padding: 1rem;
+      margin-left: 2rem;
+      max-width: 300px;
+      flex: 1;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      align-self: center;
+    }
+
+    svg {
+      width: 100%;
+      height: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 800px) {
+      .row-group {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .comment {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+      .box.storage {
+        margin-left: 0;
+        margin-top: 1rem;
+      }
+    }
+
   </style>
 </head>
 <body>
 
   <h1>Interactive Stock Dashboard</h1>
 
-  <h2>Description</h2>
   <p>
-    A web-based dashboard that provides a company overview, historical share price chart with customizable technical indicators, and a machine learning-based prediction of next-day price movement (up/down). Stock data is fetched via AlphaVantage API, while company descriptions are generated using OpenAI's language model. The price prediction is powered by a classic ML model trained on historical data.
+    A web-based dashboard that provides a company overview, historical share price chart with customizable technical indicators, and a machine learning-based prediction of next-day price movement (up/down). Stock data is fetched from external data provider (AlphaVantage) via API, while company descriptions are generated using external LLM (via OpenRouter). The price prediction is powered by a classic ML model trained on historical data.
   </p>
 
   <p>
     🔗 <strong>Live Demo:</strong> <a href="https://yourusername.github.io/stock-dashboard" target="_blank">https://yourusername.github.io/stock-dashboard</a><br>
     💻 <strong>GitHub Repo:</strong> <a href="https://github.com/yourusername/stock-dashboard" target="_blank">github.com/yourusername/stock-dashboard</a>
+    🔗 <strong>ML-model development Jupiter Notebook</strong><a href="#" target="_blank">ML Jupiter Notebook</a>
   </p>
 
   <h2>Screenshot</h2>
   <img src="screenshot.png" alt="Project Screenshot" class="screenshot" />
+
+  <h2>How it works</h2>
+
+  <div class="chart">
+
+    <!-- Data Sources -->
+    <div class="row-group">
+      <div class="row" id="row1">
+        <div class="box" id="market">📈 Market Data<br>(AlphaVantage)</div>
+        <div class="box" id="company">🧠 Company Description<br>(OpenAI API)</div>
+      </div>
+      <div class="comment">External APIs provide live and historical stock prices, as well as company overviews via LLM-generated content.</div>
+    </div>
+
+    <!-- Ingestion + Storage -->
+    <div class="row-group">
+      <div class="row" id="row2">
+        <div class="box" id="ingestion">🔄 Data Ingestion</div>
+        <div class="box storage" id="storage">💾 Storage</div>
+        <svg>
+          <defs>
+            <marker id="arrowhead" markerWidth="10" markerHeight="7" 
+              refX="0" refY="3.5" orient="auto">
+              <polygon points="0 0, 10 3.5, 0 7" fill="#007bff"/>
+            </marker>
+          </defs>
+          <line x1="180" y1="0" x2="180" y2="140" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="440" y1="0" x2="280" y2="140" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="340" y1="160" x2="520" y2="160" stroke="#6c757d" stroke-width="2" marker-end="url(#arrowhead)"/>
+        </svg>
+      </div>
+      <div class="comment">Raw data is fetched and optionally stored for reuse, pre-processing, or model training.</div>
+    </div>
+
+    <!-- ML Module -->
+    <div class="row-group">
+      <div class="row" id="row3">
+        <div class="box" id="ml">🤖 ML Prediction Module</div>
+        <svg>
+          <line x1="280" y1="0" x2="280" y2="140" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+        </svg>
+      </div>
+      <div class="comment">A trained ML model processes the data to predict next-day stock price movement (up/down).</div>
+    </div>
+
+    <!-- Web App -->
+    <div class="row-group">
+      <div class="row">
+        <div class="box" id="webapp">🌐 Web App Module</div>
+      </div>
+      <div class="comment">Front-end displays company overview, interactive charts, and model predictions in real-time.</div>
+    </div>
+
+  </div>
+
 
   <h2>Technologies & Libraries Used</h2>
   <table>
@@ -72,13 +216,13 @@
       </tr>
     </thead>
     <tbody>
+        <tr>
+            <td>DASH</td>
+            <td>Web-app framework</td>
+          </tr>
       <tr>
         <td>Python (scikit-learn)</td>
-        <td>Training the ML model for price prediction</td>
-      </tr>
-      <tr>
-        <td>JavaScript & Chart.js</td>
-        <td>Rendering interactive share price charts</td>
+        <td>Classic Machine Learning pipeline for price prediction.</td>
       </tr>
       <tr>
         <td>HTML/CSS</td>
@@ -86,12 +230,15 @@
       </tr>
       <tr>
         <td>AlphaVantage API</td>
-        <td>Fetching real-time and historical stock price data</td>
+        <td>Fetching historical stock price data</td>
       </tr>
       <tr>
-        <td>OpenAI API</td>
-        <td>Generating company summaries</td>
+        <td>OpenRouter API</td>
+        <td>Generating company summaries through request to external LLM</td>
       </tr>
+      <tr>
+        <td>Docker</td>
+        <td>Deployment of web-app on a dedicated server</td>
     </tbody>
   </table>
 
