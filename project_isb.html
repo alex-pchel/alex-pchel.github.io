@@ -118,7 +118,7 @@
       pointer-events: none;
       overflow: visible;
     }
-    
+
     @media (max-width: 800px) {
       .row-group {
         flex-direction: column;
@@ -140,18 +140,18 @@
 
   <h1>Interactive Stock Dashboard</h1>
 
-  <p>
+  <p align="justify">
     A web-based dashboard that provides a company overview, historical share price chart with customizable technical indicators, and a machine learning-based prediction of next-day price movement (up/down). Stock data is fetched from external data provider (AlphaVantage) via API, while company descriptions are generated using external LLM (via OpenRouter). The price prediction is powered by a classic ML model trained on historical data.
   </p>
 
   <p>
-    🔗 <strong>Live Demo:</strong> <a href="https://yourusername.github.io/stock-dashboard" target="_blank">https://yourusername.github.io/stock-dashboard</a><br>
-    💻 <strong>GitHub Repo:</strong> <a href="https://github.com/yourusername/stock-dashboard" target="_blank">github.com/yourusername/stock-dashboard</a>
-    🔗 <strong>ML-model development Jupiter Notebook</strong><a href="#" target="_blank">ML Jupiter Notebook</a>
+    🔗 <strong>Live Demo:</strong> <a href="https://yourusername.github.io/stock-dashboard" target="_blank">https://yourusername.github.io/stock-dashboard</a><br><br>
+    💻 <strong>GitHub Repo:</strong> <a href="https://github.com/alex-pchel/stock_prices_dashboard" target="_blank">https://github.com/alex-pchel/stock_prices_dashboard</a><br><br>
+    🔗 <strong>ML-model development:</strong><a href="#" target="_blank"> Jupiter Notebook</a>
   </p>
 
   <h2>Screenshot</h2>
-  <img src="screenshot.png" alt="Project Screenshot" class="screenshot" />
+  <img src="isb_screenshot.png" alt="Project Screenshot" class="screenshot" />
 
   <h2>How it works</h2>
 
@@ -163,13 +163,13 @@
         <div class="box" id="market">📈 Market Data<br>(AlphaVantage)</div>
         <div class="box" id="company">🧠 Company Description<br>(OpenAI API)</div>
       </div>
-      <div class="comment">External APIs provide live and historical stock prices, as well as company overviews via LLM-generated content.</div>
+      <div class="comment">External APIs provide historical stock prices, as well as company overviews via LLM-generated content.</div>
     </div>
 
     <!-- Ingestion + Storage -->
     <div class="row-group">
       <div class="row" id="row2">
-        <div class="box" id="ingestion">🔄 Data Ingestion</div>
+        <div class="box" id="ingestion"><br>🔄 Data Ingestion</div>
         <div class="box storage" id="storage">💾 Storage</div>
         <svg>
           <defs>
@@ -178,12 +178,12 @@
               <polygon points="0 0, 10 3.5, 0 7" fill="#007bff"/>
             </marker>
           </defs>
-          <line x1="180" y1="0" x2="180" y2="140" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
-          <line x1="440" y1="0" x2="280" y2="140" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
-          <line x1="340" y1="160" x2="520" y2="160" stroke="#6c757d" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="110" y1="-50" x2="110" y2="-17" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="340" y1="-49" x2="140" y2="-5" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="230" y1="35" x2="340" y2="35" stroke="#6c757d" stroke-width="2" marker-end="url(#arrowhead)"/>
         </svg>
       </div>
-      <div class="comment">Raw data is fetched and optionally stored for reuse, pre-processing, or model training.</div>
+      <div class="comment">To reduce number of requests through API (which are limited or charged and require some time for processing) data is stored locally in csv files for further use.</div>
     </div>
 
     <!-- ML Module -->
@@ -191,18 +191,21 @@
       <div class="row" id="row3">
         <div class="box" id="ml">🤖 ML Prediction Module</div>
         <svg>
-          <line x1="280" y1="0" x2="280" y2="140" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+          <line x1="110" y1="-49" x2="110" y2="-18" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
         </svg>
       </div>
-      <div class="comment">A trained ML model processes the data to predict next-day stock price movement (up/down).</div>
+      <div class="comment">A pretrained Machine Learning model is loaded and used to predict next-day stock price movement (up/down).</div>
     </div>
 
     <!-- Web App -->
     <div class="row-group">
       <div class="row">
         <div class="box" id="webapp">🌐 Web App Module</div>
+        <svg>
+            <line x1="110" y1="-49" x2="110" y2="-18" stroke="#007bff" stroke-width="2" marker-end="url(#arrowhead)"/>
+          </svg>
       </div>
-      <div class="comment">Front-end displays company overview, interactive charts, and model predictions in real-time.</div>
+      <div class="comment">Front-end displays company overview, interactive charts and model predictions.</div>
     </div>
 
   </div>
@@ -221,9 +224,17 @@
             <td>DASH</td>
             <td>Web-app framework</td>
           </tr>
-      <tr>
-        <td>Python (scikit-learn)</td>
+          <tr>
+            <td>Python</td>
+            <td>Back-end part - fetching data, storage, parsing, visualization. Libraries used are: numpy, pandas, plotly, joblib</td>
+          </tr>
+          <tr>
+        <td>Scikit-learn</td>
         <td>Classic Machine Learning pipeline for price prediction.</td>
+      </tr>
+      <tr>
+        <td>Jupiter Notebook</td>
+        <td>ML model training</td>
       </tr>
       <tr>
         <td>HTML/CSS</td>
@@ -235,7 +246,7 @@
       </tr>
       <tr>
         <td>OpenRouter API</td>
-        <td>Generating company summaries through request to external LLM</td>
+        <td>Generating company summaries through request to external LLM. Langchain library</td>
       </tr>
       <tr>
         <td>Docker</td>
